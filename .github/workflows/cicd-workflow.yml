@@ -1,1 +1,29 @@
+name: CICD
 
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+      - name: login to docker hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build docker image
+        run: docker build -t madhanprasath/html-repo .
+      - name: Publish image to docker hub
+        run: docker push madhanprasath/html-repo:latest
+
+  deploy:
+    needs: build
+    runs-on: [aws-ec2]
+    steps:
+      - name: Pull image from docker hub
+        run: docker pull madhanprasath/html-repo:latest
+      - name: Delete old contaniner
+        run: docker rm -f htmltest-container
+      - name: Run docker container
+        run: docker run -d -p 80:80 -name htmltest-container madhanprasath/html-repo
