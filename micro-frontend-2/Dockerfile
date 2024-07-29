@@ -1,12 +1,9 @@
-# Use an official Nginx image as a base
+# Use an official Nginx image
 FROM nginx:alpine
 
-# Copy the HTML and JS files to the Nginx directory
-COPY index.html /usr/share/nginx/html/index.html
-COPY script.js /usr/share/nginx/html/script.js
+# Copy the HTML and CSS files into the container
+COPY index.html /usr/share/nginx/html/
+COPY styles.css /usr/share/nginx/html/
 
-# Expose port 80 for the container
+# Expose port 80
 EXPOSE 80
-
-# Start Nginx server
-CMD ["nginx", "-g", "daemon off;"]
