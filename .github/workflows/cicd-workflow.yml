@@ -41,9 +41,9 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_KEY }}
           script: |
-            docker pull ${{ secrets.DOCKER_USERNAME }}/micro-frontend-1
-            docker pull ${{ secrets.DOCKER_USERNAME }}/micro-frontend-2
-            docker pull ${{ secrets.DOCKER_USERNAME }}/nginx-reverse-proxy
+            docker pull madhanprasath/micro-frontend-1:latest
+            docker pull madhanprasath/micro-frontend-2:latest
+            docker pull madhanprasath/nginx-reverse-proxy:latest
         
             docker stop micro-frontend-1 || true
             docker stop micro-frontend-2 || true
@@ -53,6 +53,6 @@ jobs:
             docker rm micro-frontend-2 || true
             docker rm nginx-reverse-proxy || true
         
-            docker run -d --name micro-frontend-1 ${{ secrets.DOCKER_USERNAME }}/micro-frontend-1
-            docker run -d --name micro-frontend-2 ${{ secrets.DOCKER_USERNAME }}/micro-frontend-2
-            docker run -d -p 80:80 --name nginx-reverse-proxy ${{ secrets.DOCKER_USERNAME }}/nginx-reverse-proxy
+            docker run -d --name micro-frontend-1 madhanprasath/micro-frontend-1:latest
+            docker run -d --name micro-frontend-2 madhanprasath/micro-frontend-2:latest
+            docker run -d -p 80:80 --name nginx-reverse-proxy madhanprasath/nginx-reverse-proxy:latest
