@@ -17,17 +17,17 @@ jobs:
 
       - name: Build and push micro-frontend-1
         run: |
-          docker build -t madhanprasath/micro-frontend-1:latest ./path/to/micro-frontend-1
+          docker build -t madhanprasath/micro-frontend-1 ./path/to/micro-frontend-1
           docker push madhanprasath/micro-frontend-1:latest
 
       - name: Build and push micro-frontend-2
         run: |
-          docker build -t madhanprasath/micro-frontend-2:latest ./path/to/micro-frontend-2
+          docker build -t madhanprasath/micro-frontend-2 ./path/to/micro-frontend-2
           docker push madhanprasath/micro-frontend-2:latest
 
       - name: Build and push nginx reverse proxy
         run: |
-          docker build -t madhanprasath/nginx-reverse-proxy:latest ./path/to/nginx-reverse-proxy
+          docker build -t madhanprasath/nginx-reverse-proxy ./path/to/nginx-reverse-proxy
           docker push madhanprasath/nginx-reverse-proxy:latest
 
   deploy:
