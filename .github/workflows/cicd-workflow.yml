@@ -43,16 +43,16 @@ jobs:
           script: |
             docker pull madhanprasath/micro-frontend-1:latest
             docker pull madhanprasath/micro-frontend-2:latest
-            docker pull madhanprasath/nginx-reverse-proxy:latest
+            #docker pull madhanprasath/nginx-reverse-proxy:latest
         
             docker stop micro-frontend-1 || true
             docker stop micro-frontend-2 || true
-            docker stop nginx-reverse-proxy || true
+            #docker stop nginx-reverse-proxy || true
         
             docker rm micro-frontend-1 || true
             docker rm micro-frontend-2 || true
-            docker rm nginx-reverse-proxy || true
+            #docker rm nginx-reverse-proxy || true
         
-            docker run -d --name micro-frontend-1 madhanprasath/micro-frontend-1:latest
-            docker run -d --name micro-frontend-2 madhanprasath/micro-frontend-2:latest
-            docker run -d -p 80:80 --name nginx-reverse-proxy madhanprasath/nginx-reverse-proxy:latest
+            docker run -d -p 801:80 --name micro-frontend-1 madhanprasath/micro-frontend-1:latest
+            docker run -d -p 800:80 --name micro-frontend-2 madhanprasath/micro-frontend-2:latest
+            #docker run -d -p 80:80 --name nginx-reverse-proxy madhanprasath/nginx-reverse-proxy:latest
