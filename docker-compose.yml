@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  micro-frontend-1:
+    image: micro-frontend-1:latest
+    container_name: app1
+    ports:
+      - "801:80"
+    networks:
+      - frontend
+
+  micro-frontend-2:
+    image: micro-frontend-2:latest
+    container_name: app2
+    ports:
+      - "800:80"
+    networks:
+      - frontend
+
+networks:
+  frontend:
+    driver: bridge
